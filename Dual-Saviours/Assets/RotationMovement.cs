@@ -9,14 +9,18 @@ public class RotationMovement : MonoBehaviour
 
 	public float rotationSpeed = 5f;
 
+	public Animator animator;
+
 	public void StartMoving(Vector2 direction)
 	{
 		moveDir = direction;
+		animator.SetBool("IsMoving", true);
 	}
 
 	public void StopMoving()
 	{
 		moveDir = Vector2.zero;
+		animator.SetBool("IsMoving", false);
 	}
 
 	private void Update()

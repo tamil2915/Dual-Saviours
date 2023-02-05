@@ -24,7 +24,7 @@ public class PositionStorer : MonoBehaviour
     {
         currentPosition = transform.position;
 
-        rotator.SetRotation(previousPosition, currentPosition);
+        rotator.RotateThePlayer((currentPosition - previousPosition));
 
         previousPosition = transform.position;
     }

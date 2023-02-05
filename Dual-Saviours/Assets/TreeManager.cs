@@ -5,7 +5,7 @@ using UnityEngine;
 public class TreeManager : MonoBehaviour
 {
     public Root[] trees;
-
+    public UIManager uiManager;
     public bool CheckIfValidMove(int index1, int index2)
     {
         //check whether the heart can be added
@@ -24,17 +24,21 @@ public class TreeManager : MonoBehaviour
 
     void CheckForGameOver()
     {
+        if (uiManager.IsGameOver)
+            return;
         // check if one of the trees died
         if (trees[0].IsDead() || trees[1].IsDead())
         {
             //game over trees dead
             Debug.Log("game over trees dead");
+            uiManager.GameOverNegative();
         }
         //check if game is completed
-        else if (trees[0].IsGrowthComplete() || trees[1].IsGrowthComplete())
+        else if (trees[0].IsGrowthComplete() && trees[1].IsGrowthComplete())
         {
             //game over growth completed
             Debug.Log("game over growth completed");
+            uiManager.GameOverPositive();
         }
 
     }

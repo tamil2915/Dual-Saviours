@@ -11,6 +11,8 @@ public class InputCollector : MonoBehaviour
     public RotationMovement princeMover;
     public RotationMovement princessMover;
 
+    public UIManager gameManager;
+
     private void OnEnable()
     {
         inputControls.Enable();    
@@ -35,6 +37,8 @@ public class InputCollector : MonoBehaviour
 
     void PrinceMoved(Vector2 direction)
     {
+        if (gameManager.IsGameOver)
+            return;
         //prince.StartMoving(direction);
         princeMover.StartMoving(new Vector2( -direction.y, -direction.x));
     }
@@ -47,6 +51,8 @@ public class InputCollector : MonoBehaviour
 
     void PrincessMoved(Vector2 direction)
     {
+        if (gameManager.IsGameOver)
+            return;
         princessMover.StartMoving(new Vector2(-direction.y, -direction.x));
     }
 
