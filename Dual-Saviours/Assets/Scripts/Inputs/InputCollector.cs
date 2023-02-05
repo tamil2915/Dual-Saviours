@@ -8,8 +8,8 @@ public class InputCollector : MonoBehaviour
     [SerializeField]
     private Inputcontrols inputControls;
 
-    public Player prince;
-    public Player princess;
+    public RotationMovement princeMover;
+    public RotationMovement princessMover;
 
     private void OnEnable()
     {
@@ -27,16 +27,31 @@ public class InputCollector : MonoBehaviour
 
         inputControls.PrinceActionMap.Move.performed += ctx => PrinceMoved(ctx.ReadValue<Vector2>());
         inputControls.PrincessActionMap.Move.performed += ctx => PrincessMoved(ctx.ReadValue<Vector2>());
+
+        inputControls.PrinceActionMap.Move.canceled += ctx => PrinceStopped();
+        inputControls.PrincessActionMap.Move.canceled += ctx => PrincessStopped();
+
     }
 
     void PrinceMoved(Vector2 direction)
     {
-        prince.GetPlayerInput(direction);
+        //prince.StartMoving(direction);
+        princeMover.StartMoving(new Vector2( -direction.y, -direction.x));
     }
 
+    void PrinceStopped()
+    {
+        //prince.StopMoving();
+        princeMover.StopMoving();
+    }
 
     void PrincessMoved(Vector2 direction)
     {
-        princess.GetPlayerInput(direction);
+        princessMover.StartMoving(new Vector2(-direction.y, -direction.x));
+    }
+
+    void PrincessStopped()
+    {
+        princessMover.StopMoving();
     }
 }
