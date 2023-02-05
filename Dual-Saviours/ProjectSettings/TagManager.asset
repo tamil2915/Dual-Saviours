@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Left_pane_camera
   - Right_pane_camera
+  - obstacle
+  - tree
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - World
   - Tree
-  - 
+  - obstacles
   - 
   - 
   - 

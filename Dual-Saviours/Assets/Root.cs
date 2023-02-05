@@ -11,7 +11,7 @@ public class Root : MonoBehaviour
 
     public float cycleTime = 20f; // duration for each growth or death cycle
 
-    int _currentGrowthCycle = 1;
+    int _currentGrowthCycle = 0;
 
     float elapsedTime = 0;
 
@@ -39,7 +39,7 @@ public class Root : MonoBehaviour
 
         if (elapsedTime >= cycleTime)
         {
-            if (GetCurrentGrowthCycle() > 0)
+            if (GetCurrentGrowthCycle() >= 0)
             //check for the currentStatus
                 DecrementGrowth();
         }
@@ -95,10 +95,10 @@ public class Root : MonoBehaviour
     public void DecrementGrowth() {
         _currentGrowthCycle--;
 
-        if (_currentGrowthCycle < 1)
+        if (_currentGrowthCycle < 0)
         {
             // Game over you lost
-            UpdateTree();
+           // UpdateTree();
             isGameOver = true;
             return;
         }
@@ -137,7 +137,7 @@ public class Root : MonoBehaviour
 
     public bool IsDead()
     {
-        if (_currentGrowthCycle <= 0)
+        if (_currentGrowthCycle < 0)
         {
             return true;
         }

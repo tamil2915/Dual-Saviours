@@ -10,9 +10,15 @@ public class Player : MonoBehaviour
 
 	public GameObject heartObj;
 
+	public UIManager uIManager;
+
 	private void OnTriggerEnter(Collider other)
 	{
-		//Debug.Log("collided!!" + other.name);
+		if (other.CompareTag("obstacle"))
+		{
+			uIManager.GameOverNegative();
+			uIManager.audioManager.PlayPlayerDeadSound();
+		}
 	}
 
 	public bool HasHeart()

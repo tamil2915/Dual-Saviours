@@ -32,6 +32,7 @@ public class TreeManager : MonoBehaviour
             //game over trees dead
             Debug.Log("game over trees dead");
             uiManager.GameOverNegative();
+            uiManager.audioManager.PlayPlayerDeadSound();
         }
         //check if game is completed
         else if (trees[0].IsGrowthComplete() && trees[1].IsGrowthComplete())

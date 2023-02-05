@@ -39,4 +39,10 @@ public class AudioManager : MonoBehaviour
         secondaryPlayer.clip = audioClips[3];
         secondaryPlayer.Play();
     }
+
+    public void PlayPlayerDeadSound()
+    {
+        secondaryPlayer.clip = audioClips[4];
+        secondaryPlayer.Play();
+    }
 }

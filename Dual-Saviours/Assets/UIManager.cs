@@ -12,8 +12,6 @@ public class UIManager : MonoBehaviour
     public Root topTree;
     public Root bottomTree;
 
-    public TextMeshProUGUI princeText;
-    public TextMeshProUGUI princessText;
     public TextMeshProUGUI topTreeText;
     public TextMeshProUGUI bottomTreeText;
 
@@ -24,16 +22,6 @@ public class UIManager : MonoBehaviour
     public CameraManager cameraManager;
 
     public AudioManager audioManager;
-
-    public void PutPrinceText()
-    {
-        princeText.SetText(prince.HasHeart() ? "1" : "0");
-    }
-
-    public void PutPrincessText()
-    {
-        princessText.SetText(princess.HasHeart() ? "1" : "0");
-    }
 
     public void UpdateTopTreeHearts()
     {
@@ -47,8 +35,6 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        PutPrinceText();
-        PutPrincessText();
         UpdateTopTreeHearts();
         UpdateBottomTreeHearts();
     }
