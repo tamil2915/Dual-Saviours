@@ -4,63 +4,49 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector3 origin = Vector3.zero;
+	public LayerMask collisionLayers;
 
-    public float movementSpeed = 10f;
+	public bool _hasHeart = true;
 
-    public Vector2 moveDir = Vector2.zero;
-    
-    public float yScale = 10.5f;
+	public GameObject heartObj;
 
-    public void GetPlayerInput(Vector2 direction)
-    {
-        moveDir = direction;
-    }
+	public UIManager uIManager;
 
-    private void Start()
-    {
-        moveDir.Normalize();
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("obstacle"))
+		{
+			uIManager.GameOverNegative();
+			uIManager.audioManager.PlayPlayerDeadSound();
+		}
+	}
 
-    private void Update()
-    {
+	public bool HasHeart()
+	{
+		return _hasHeart;
+	}
 
-    }
+	public void PutHeart()
+	{
+		_hasHeart = true;
+		SpawnHeart();
+	}
 
-    private void FixedUpdate()
-    {
-        AlignWithPlanet();
-        MovePlayer(moveDir);
-    }
-    
-    void AlignWithPlanet()
-    {
-        transform.up = GetElapsedRotation(transform.position);
+	public void RemoveHeart()
+	{
+		_hasHeart = false;
+		DeSpawnHeart();
+	}
 
-        Debug.Log(transform.localRotation);
-    }
+	void SpawnHeart()
+	{
+		if (heartObj)
+			heartObj.SetActive(true);
+	}
 
-    Vector3 GetElapsedRotation(Vector3 pos)
-    {
-        Vector3 elapsedRotation = pos - origin;
-        return elapsedRotation.normalized;
-    }
-
-    void MovePlayer(Vector2 direction)
-    {
-        //we need to get the tangent vector of player's current position
-        //then we need to move the player along the tangent
-
-        Vector3 dir = new Vector3(direction.x, 0f, direction.y);
-
-        dir = transform.localRotation * dir;
-
-        dir = dir.normalized;
-        dir = dir * movementSpeed * Time.fixedDeltaTime;
-
-
-        transform.position += dir;
-
-        transform.position = GetElapsedRotation( transform.position ) * yScale;
-    }
+	void DeSpawnHeart()
+	{
+		if (heartObj)
+			heartObj.SetActive(false);
+	}
 }

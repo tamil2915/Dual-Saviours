@@ -6,16 +6,18 @@ TagManager:
   tags:
   - Left_pane_camera
   - Right_pane_camera
+  - obstacle
+  - tree
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Players
   - Water
   - UI
-  - 
-  - 
-  - 
+  - World
+  - Tree
+  - obstacles
   - 
   - 
   - 
